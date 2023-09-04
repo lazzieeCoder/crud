@@ -1,6 +1,5 @@
 //!initial values
 var selectedRow = null;
-
 //!form submit logic
 function onFormSubmit(e) {
   event.preventDefault();
@@ -10,8 +9,8 @@ function onFormSubmit(e) {
   } else {
     updateRecord(formData);
   }
+  resetForm();
 }
-
 //!get method(Retriving the data)
 function readFormData() {
   var formData = {};
@@ -21,7 +20,6 @@ function readFormData() {
   formData["perPrice"] = document.getElementById("perPrice").value;
   return formData;
 }
-
 //!insert the data (Post method)
 function insertNewRecord(data) {
   var table = document
@@ -37,7 +35,7 @@ function insertNewRecord(data) {
   cell4 = newRow.insertCell(3);
   cell4.innerHTML = data.perPrice;
   cell4 = newRow.insertCell(4);
-  cell4.innerHTML = `<button onClick="onEdit(this)">Edit</button> <button>Delete</button>`;
+  cell4.innerHTML = `<button onClick="onEdit(this)">Edit</button> <button onClick = "onDelete(this)">Delete</button>`;
 }
 //!edit and update the data (Update method)
 //editing the data(get)
@@ -55,7 +53,20 @@ function updateRecord(formData) {
   selectedRow.cells[2].innerHTML = formData.qty;
   selectedRow.cells[3].innerHTML = formData.perPrice;
 }
-
 //!deleting the data (delete method)
-
+//delete the data
+function onDelete(td) {
+  if (confirm("Are you sure about deleting😒 the data ?")) {
+    row = td.parentElement.parentElement;
+    document.getElementById("storeList").deleteRow(row.rowIndex);
+    resetForm();
+  }
+}
 //!reseting the values in form
+function resetForm() {
+  document.getElementById("productCode").value = "";
+  document.getElementById("product").value = "";
+  document.getElementById("qty").value = "";
+  document.getElementById("perPrice").value = "";
+  selectedRow = null;
+}
