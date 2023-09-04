@@ -1,0 +1,36 @@
+CRUD => 
+C-Create  (post)
+R-Read  (get)
+U-Update  (put) / (patch)
+D-Delete  (delete)
+
+const URL = "https://github.com/"
+//post method
+fetch(URL,{
+    method: "post",
+    body:{
+        email, brinda@gmail.com
+        password, 12345678
+    }
+})
+//get method
+fetch(URL)
+   //put method
+fetch(URL +"/"+id,{
+method:"put",
+body:{
+    email,
+    password,
+}
+})
+//patch method
+fetch(URL +"/"+id,{
+method:"patch",
+body:{
+  password
+    }
+})
+//delete method
+fetch(URL +"/"+id,{
+    method: "delete",
+})
